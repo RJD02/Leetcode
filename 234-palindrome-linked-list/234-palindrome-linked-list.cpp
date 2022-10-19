@@ -11,19 +11,19 @@
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        string s = "";
+        stack<int> st;
         ListNode* temp = head;
         while(temp != NULL) {
-            s += to_string(temp->val);
+            st.push(temp->val);
             temp = temp->next;
         }
-        cout << s << endl;
-        int first = 0, last = s.size() - 1;
-        while(first < last) {
-            if(s[first] != s[last])
+        
+        temp = head;
+        while(temp != NULL) {
+            if(st.top() != temp->val)
                 return false;
-            first++;
-            last--;
+            st.pop();
+            temp = temp->next;
         }
         return true;
     }
